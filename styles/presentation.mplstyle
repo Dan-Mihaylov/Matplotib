@@ -1,0 +1,8 @@
+axes.titlesize : 14
+figure.titlesize : 20
+figure.facecolor : lightblue
+axes.labelsize : 20
+lines.linewidth : 3
+lines.markersize : 10
+xtick.labelsize : 16
+ytick.labelsize : 16
