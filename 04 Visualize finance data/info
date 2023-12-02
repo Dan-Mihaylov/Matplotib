@@ -1,0 +1,39 @@
+When you work with pandas and yfincce it stores the time info in a timestamp
+to convert this timestamp to a datetime pandas object, so you can access methods like
+.date(), .day(), .(hour) and so on you have to convert it into a datetime object
+to do so you can use this simple syntax
+
+access the timestamp object
+
+ex:
+
+microsoft = yf.Ticker('MSFT')
+
+msft_history = microsoft.history('1d', '1h')
+
+# print(msft_history.index.tolist())
+
+for item in msft_history.index.tolist():
+    # The first object is a timestamp
+    print(item)
+    # The second object is a datetime
+    print(item.to_pydatetime())
+    print()
+
+The function that we have used is the
+
+datetime = timestamp.to_pydatetime()
+
+after that we can use the datetime.date()
+to display just the date.
+
+datetime.time()
+to display the time
+
+datetime.hour
+to display the hour
+
+and so on...
+
+You can even apply the changes straight into the column, and not on every item
+individually
