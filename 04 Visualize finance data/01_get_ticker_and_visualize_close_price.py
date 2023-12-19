@@ -14,7 +14,7 @@ aapl = yf.Ticker('AAPL')
 # and more. You access the data from each object using the . notation.
 # ex. To access all the Open times, you can use aapl_history.Open, it will give you a dict like
 # object in which you can call a method .items() to get the date and the values.
-aapl_history = aapl.history("10Y", '1mo')
+aapl_history = aapl.history("2Y", '1d')
 
 
 # We are going to do a simple graph to show the close times from a ticker.
@@ -40,14 +40,17 @@ for timestamp, price in aapl_history.Close.items():
     # dates.append(convert_date(timestamp))
     close_prices.append(price)
 
+close_prices = np.array(close_prices)
 dates = aapl_history.index.to_pydatetime()
 
-ax.plot(dates, close_prices, '-', label='AAPL price', )
+ax.plot(dates, close_prices, '-', label='AAPL price', lw=1)
 # Now we will get all the tick labels and rotate them to fit more of them on the xaxis
 for label in ax.xaxis.get_ticklabels():
     label.set_rotation(45)  # rotate them to 45 degrees
 
-ax.scatter(dates, close_prices, s=9)
+
+ax.fill_between(dates, close_prices[0], close_prices, alpha=0.3, color='green', where=(close_prices > close_prices[0]))
+ax.fill_between(dates, close_prices[0], close_prices, alpha=0.3, color='red', where=(close_prices < close_prices[0]))
 
 ax.legend()
 ax.grid(True)
